@@ -24,13 +24,13 @@ Canvas.add(player_object);
 }
 
 function new_image(get_image){
-fabric.image.fromURL(get_image, function(Img){
+fabric.Image.fromURL(get_image, function(Img){
 block_image_object=Img;
 block_image_object.scaleToWidth(block_image_width);
 block_image_object.scaleToHeight(block_image_height);
 block_image_object.set({
 top:player_y,
-left_player_x
+left:player_x
 });
 Canvas.add(block_image_object);
 });
@@ -53,7 +53,7 @@ if(e.shiftKey==true && keypressed=='77'){
     block_image_width=block_image_width-10;
     block_image_height=block_image_height-10;
     document.getElementById("current_width").innerHTML=block_image_width;
-    document.getElementById("current_height").innerHTML=block_image_height;
+  document.getElementById("current_height").innerHTML=block_image_height;
 }
 if(keypressed=='37'){
     left();
@@ -109,4 +109,36 @@ if(keypressed=='67'){
     console.log("c");
 }
 }
+function left(){
+    if(player_x>0){
+player_x=player_x-block_image_width;
+console.log("x="+player_x+"y="+player_y);
+Canvas.remove(player_object);
+player_update();
+    }    
 
+}
+function right(){
+    if(player_x<900){
+        player_x=player_x+block_image_width;
+        console.log("x="+player_x+"y="+player_y);
+        Canvas.remove(player_object);
+        player_update();
+}
+}
+function up(){
+    if(player_y>0){
+        player_y=player_y-block_image_height;
+        console.log("x="+player_x+"y="+player_y);
+        Canvas.remove(player_object);
+        player_update();
+    }
+}
+function down(){
+    if(player_y<500){
+  player_y=player_y+block_image_height;
+ console.log("x="+player_x+"y="+player_y);
+        Canvas.remove(player_object);
+        player_update();
+    }
+}
